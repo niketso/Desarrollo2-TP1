@@ -1,0 +1,10 @@
+
+Desarrollo2-TP1/Library/
+
+Desarrollo2-TP1/\.vs/
+
+Desarrollo2-TP1/UnityPackageManager/
+
+*.sln
+
+*.csproj
