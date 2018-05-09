@@ -5015,7 +5015,7 @@ MonoBehaviour:
   currentBullets: 0
   shootPoint: {fileID: 720592977}
   muzzleFlash: {fileID: 1142757855}
-  shootSound: {fileID: 0}
+  shootSound: {fileID: 8300000, guid: 3ae1595f44ece41499cf02584ac4b746, type: 3}
   fireRate: 0.2
 --- !u!82 &1283042332
 AudioSource:
