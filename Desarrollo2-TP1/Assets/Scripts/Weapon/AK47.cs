@@ -18,6 +18,7 @@ public class AK47 : MonoBehaviour {
     public AudioClip shootSound;
 
     public float fireRate= 0.1f;
+    public int damage =20;
     float fireTimer;
     private bool isReloading;
 	void Start ()
@@ -64,17 +65,18 @@ public class AK47 : MonoBehaviour {
  
         RaycastHit hit;
 
-        if (Physics.Raycast(shootPoint.position, shootPoint.transform.forward, out hit, range))
-        {
-            Debug.Log(hit.transform.name + "found!");
-        }
-
+        if (Physics.Raycast(shootPoint.position, shootPoint.transform.forward, out hit, range)) { }
+                       
         anim.CrossFadeInFixedTime("Fire", 0.01f);
         muzzleFlash.Play();
         PlayShootSound();
 
         currentBullets--;
         fireTimer = 0.0f;
+        if (hit.transform.GetComponent<Enemy>())
+        {
+            hit.transform.GetComponent<Enemy>().ApplyDamage(20);
+        }
 
     }
 

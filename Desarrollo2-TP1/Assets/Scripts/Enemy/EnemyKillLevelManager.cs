@@ -3,16 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class EnemyKillLevelManager : MonoBehaviour {
+public class EnemyKillLevelManager : MonoBehaviour
+{
+    [SerializeField]
+    string nextScene;
 
-    /*[SerializeField] int enemiestoKill;
-    [SerializeField] int nextScene;
-
-    private void Update()
+    void Update()
     {
-        if (EnemyManager.Instance.ActiveEnemies <= 0)
+        if (EnemyManager.Instance.ActiveEnemies.Count <= 0)
         {
             SceneManager.LoadScene(nextScene);
         }
-    }*/
+    }
 }

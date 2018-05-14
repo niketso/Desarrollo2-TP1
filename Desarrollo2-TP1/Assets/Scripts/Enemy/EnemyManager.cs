@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyManager : MonoBehaviour {
-
+public class EnemyManager : MonoBehaviour
+{
     private static EnemyManager instance;
 
     public static EnemyManager Instance
@@ -11,23 +11,25 @@ public class EnemyManager : MonoBehaviour {
         get
         {
             if (instance == null)
-            {
                 instance = FindObjectOfType<EnemyManager>();
-                if (instance == null)
-                {
-                    GameObject go = new GameObject("EnemyManager");
-                    instance = go.AddComponent<EnemyManager>();
-                }
-            }
+
             return instance;
         }
     }
 
-    [SerializeField] int activeEnemies;
+    [SerializeField]
+    List<Enemy> activeEnemies;
 
-    public int ActiveEnemies
+    public List<Enemy> ActiveEnemies
     {
         get { return activeEnemies; }
-        set { activeEnemies = value; }
+    }
+
+    private void Awake()
+    {
+        if (Instance != this)
+            Debug.LogError("Duplicated EnemyManager", gameObject);
+        else
+            Debug.Log("EnemyManager Initialized", gameObject);
     }
 }
