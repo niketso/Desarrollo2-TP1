@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class AK47 : MonoBehaviour {
 
@@ -45,6 +46,13 @@ public class AK47 : MonoBehaviour {
 
         if (fireTimer < fireRate)
             fireTimer += Time.deltaTime;
+
+        if(totalBullets <= 0 && currentBullets <= 0)
+        {
+            SceneManager.LoadScene("Loose");
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+        }
 	}
 
     void FixedUpdate()
@@ -75,7 +83,7 @@ public class AK47 : MonoBehaviour {
         fireTimer = 0.0f;
         if (hit.transform.GetComponent<Enemy>())
         {
-            hit.transform.GetComponent<Enemy>().ApplyDamage(20);
+            hit.transform.GetComponent<Enemy>().ApplyDamage(30);
         }
 
     }

@@ -4,23 +4,26 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    //private Animator anim1;
     [SerializeField]
     private int health = 100;
     [SerializeField]
     private GameObject enemy;
 
+
+    /*void Update()
+    {
+        anim1 = GetComponent<Animator>();
+    }*/
     private void OnEnable()
     {
-        EnemyManager.Instance.ActiveEnemies.Add(this);
-        
+        EnemyManager.Instance.ActiveEnemies.Add(this);       
     }
 
     void OnDisable()
     {
-
         if (EnemyManager.Instance != null)
-            EnemyManager.Instance.ActiveEnemies.Remove(this);
-                
+            EnemyManager.Instance.ActiveEnemies.Remove(this);                
     }
 
     void OnDeath()
@@ -33,10 +36,11 @@ public class Enemy : MonoBehaviour
         health -= damage;
         if (health <= 0)
         {
-           OnDisable();
+            //anim1.Play("Hit");
+            OnDisable();
             OnDeath();
-            enemy.SetActive(false);
-            Debug.Log("hola");
+            enemy.SetActive(false);           
         }
     }
+
 }

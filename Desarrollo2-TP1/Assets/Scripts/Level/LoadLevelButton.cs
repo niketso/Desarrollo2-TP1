@@ -6,17 +6,32 @@ using UnityEngine.SceneManagement;
 
 public class LoadLevelButton : MonoBehaviour
 {
-    [SerializeField]
-    string nextLevel;
+    
 
-    private void Awake()
+   /* private void Awake()
     {
         var btn = GetComponent<Button>();
         btn.onClick.AddListener(ChangeLevel);
+    }*/
+
+    public void ChangeLevel()
+    {
+        SceneManager.LoadScene("Nivel-1");
     }
 
-    private void ChangeLevel()
+    public void Menu()
+    {       
+        SceneManager.LoadScene("Title");
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+    }
+
+    public void Quit()
     {
-        SceneManager.LoadScene(nextLevel);
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
+        Application.Quit();
+#endif
     }
 }
