@@ -86,6 +86,11 @@ public class AK47 : MonoBehaviour {
             hit.transform.GetComponent<Enemy>().ApplyDamage(30);
         }
 
+        if (hit.transform.GetComponent<SacosdeArena>())
+        {
+            hit.transform.GetComponent<SacosdeArena>().ApplyDamage(30);
+        }
+
     }
 
     public void Reload()
