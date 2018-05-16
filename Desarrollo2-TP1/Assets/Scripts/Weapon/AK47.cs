@@ -1,9 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+
 public class AK47 : MonoBehaviour {
+
 
     private Animator anim;
     private AudioSource audioSource;
@@ -13,7 +16,7 @@ public class AK47 : MonoBehaviour {
     [SerializeField]
     private int totalBullets = 90;
     public int currentBullets;
-
+    public Text ammoText;
     public Transform shootPoint;
     public ParticleSystem muzzleFlash;
     public AudioClip shootSound;
@@ -22,14 +25,17 @@ public class AK47 : MonoBehaviour {
     public int damage =20;
     float fireTimer;
     private bool isReloading;
+    
 	void Start ()
     {
         anim = GetComponent<Animator>();
         audioSource = GetComponent<AudioSource>();
-        currentBullets = bulletsPerMag;      
+        currentBullets = bulletsPerMag;
+        UpdateAmmoText();     
 	}
 		
 	void Update () {
+
         if (Input.GetButton("Fire1"))
         {
             if (currentBullets > 0)
@@ -80,6 +86,7 @@ public class AK47 : MonoBehaviour {
         PlayShootSound();
 
         currentBullets--;
+        UpdateAmmoText();
         fireTimer = 0.0f;
         if (hit.transform.GetComponent<Enemy>())
         {
@@ -105,6 +112,7 @@ public class AK47 : MonoBehaviour {
 
         totalBullets -= bulletsToUse;
         currentBullets += bulletsToUse;
+        UpdateAmmoText();
     }
 
     private void DoReload()
@@ -121,5 +129,9 @@ public class AK47 : MonoBehaviour {
     {
         audioSource.clip = shootSound;
         audioSource.Play();
+    }
+    private void UpdateAmmoText()
+    {
+        ammoText.text = currentBullets + " / " + totalBullets;
     }
 }
