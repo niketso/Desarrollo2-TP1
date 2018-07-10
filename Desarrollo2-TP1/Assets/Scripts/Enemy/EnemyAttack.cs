@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyAttack : MonoBehaviour {
-
-	// Use this for initialization
-	void Start () {
-		
-	}
+    Animator  anim;
+    void Awake()
+    {
+        anim = GetComponent<Animator>();
+    }
+    void Update()
+    {
+        //anim.SetTrigger
+    }
 	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 }
