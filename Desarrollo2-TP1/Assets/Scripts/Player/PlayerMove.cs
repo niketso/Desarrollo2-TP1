@@ -6,7 +6,10 @@ public class PlayerMove : MonoBehaviour
 {
     CharacterController charControl;
     public float walkSpeed;
-
+    [SerializeField] float jumpForce;
+    [SerializeField] float gravity;
+    [SerializeField] float speed;
+    float verticalSpeed;
     void Awake()
     {
         charControl = GetComponent<CharacterController>();
@@ -15,6 +18,7 @@ public class PlayerMove : MonoBehaviour
     void Update()
     {
         MovePlayer();
+        //JumpPlayer();
     }
 
     void MovePlayer()
@@ -28,5 +32,21 @@ public class PlayerMove : MonoBehaviour
         charControl.SimpleMove(moveDirSide);
         charControl.SimpleMove(moveDirForward);
 
+    }
+    void JumpPlayer()
+    {
+        verticalSpeed -= gravity * Time.deltaTime;
+        Vector3 mov = new Vector3(0, 0, 0);
+        mov += transform.forward * Input.GetAxis("Vertical") * speed;
+        mov += Vector3.up * verticalSpeed;
+        charControl.Move(mov * Time.deltaTime);
+
+        if (charControl.isGrounded)
+        {
+            if (Input.GetButton("Jump"))
+                verticalSpeed = jumpForce;
+            else
+                verticalSpeed = 0;
+        }
     }
 }
