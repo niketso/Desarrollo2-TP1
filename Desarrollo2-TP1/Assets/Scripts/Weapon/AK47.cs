@@ -20,6 +20,8 @@ public class AK47 : MonoBehaviour {
     public Transform shootPoint;
     public ParticleSystem muzzleFlash;
     public AudioClip shootSound;
+    [SerializeField]
+    float pjHealth;
 
     public float fireRate= 0.1f;
     public int damage =20;
@@ -53,7 +55,7 @@ public class AK47 : MonoBehaviour {
         if (fireTimer < fireRate)
             fireTimer += Time.deltaTime;
 
-        if(totalBullets <= 0 && currentBullets <= 0)
+        if((totalBullets <= 0 && currentBullets <= 0)||pjHealth == 0)
         {
             SceneManager.LoadScene("Loose");
             Cursor.lockState = CursorLockMode.None;
@@ -134,4 +136,10 @@ public class AK47 : MonoBehaviour {
     {
         ammoText.text = currentBullets + " / " + totalBullets;
     }
+    public void TakeDamage(int damage)
+    {
+        pjHealth -= damage;
+
+    }
 }
+
