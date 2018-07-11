@@ -17,6 +17,7 @@ public class AK47 : MonoBehaviour {
     private int totalBullets = 90;
     public int currentBullets;
     public Text ammoText;
+    public Text lifeText;
     public Transform shootPoint;
     public ParticleSystem muzzleFlash;
     public AudioClip shootSound;
@@ -33,7 +34,8 @@ public class AK47 : MonoBehaviour {
         anim = GetComponent<Animator>();
         audioSource = GetComponent<AudioSource>();
         currentBullets = bulletsPerMag;
-        UpdateAmmoText();     
+        UpdateAmmoText();
+        UpdatehpText();
 	}
 		
 	void Update () {
@@ -61,7 +63,8 @@ public class AK47 : MonoBehaviour {
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
         }
-	}
+        UpdatehpText();
+    }
 
     void FixedUpdate()
      {
@@ -139,7 +142,12 @@ public class AK47 : MonoBehaviour {
     public void TakeDamage(int damage)
     {
         pjHealth -= damage;
+        
 
+    }
+    private void UpdatehpText()
+    {
+        lifeText.text = " " + pjHealth;
     }
 }
 
